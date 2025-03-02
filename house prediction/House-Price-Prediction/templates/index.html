@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .prediction-box {
+            background: #e3f2fd;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            color: #007BFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🏠 House Price Prediction</h2>
+        <form action="/predict" method="POST">
+            <label for="bedrooms">Bedrooms:</label>
+            <input type="number" name="bedrooms" id="bedrooms" required>
+
+            <label for="bathrooms">Bathrooms:</label>
+            <input type="number" name="bathrooms" id="bathrooms" required>
+
+            <label for="sqft">Square Feet:</label>
+            <input type="number" name="sqft" id="sqft" required>
+
+            <label for="location">Location:</label>
+            <select name="location" id="location" required>
+                <option value="" disabled selected>Select a location</option>
+                <option value="Location1">Location 1</option>
+                <option value="Location2">Location 2</option>
+                <option value="Location3">Location 3</option>
+            </select>
+
+            <button type="submit">🔍 Predict Price</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction-box">
+            <h3>🏡 Estimated Price</h3>
+            <p>₹ <span class="price">{{ prediction }}</span></p>
+        </div>
+    
+    
+        {% endif %}
+    </div>
+
+</body>
+</html>
